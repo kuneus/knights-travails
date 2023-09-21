@@ -1,26 +1,34 @@
 {
-  "name": "new-project-template",
+  "name": "knights-travails",
   "version": "1.0.0",
-  "description": "This template includes ESLint & Prettier for Javascript and comes with HTML, CSS, and JS files to get started.",
-  "main": "script.js",
+  "description": "This project includes ESLint & Prettier for Javascript and comes with HTML, CSS, and JS files to get started.",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "dev": "webpack --mode=development",
+    "prod": "webpack --mode=production"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kuneus/new-project-template.git"
+    "url": "git+https://github.com/kuneus/knights-travails.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kuneus/new-project-template/issues"
   },
-  "homepage": "https://github.com/kuneus/new-project-template#readme",
+  "homepage": "https://github.com/kuneus/knights-travails#readme",
   "devDependencies": {
+    "css-loader": "^6.8.1",
     "eslint": "^8.37.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
-    "prettier": "2.8.7"
+    "prettier": "2.8.7",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
   }
 }
