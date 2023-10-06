@@ -1,13 +1,9 @@
 const boardCont = document.getElementById('board-cont');
 
-const createAndAppend = (el, elClass, elId, elParent) => {
+const createAndAppend = (el, elClass, elParent) => {
   const element = document.createElement(el);
 
-  if (elClass) {
-    element.setAttribute('class', elClass);
-  }
-
-  if (elId) element.setAttribute('id', elId);
+  if (elClass) element.setAttribute('class', elClass);
 
   if (elParent) elParent.appendChild(element);
   return element;
@@ -16,9 +12,7 @@ const createAndAppend = (el, elClass, elId, elParent) => {
 const createAndPrepend = (el, elClass, elParent) => {
   const element = document.createElement(el);
 
-  if (elClass) {
-    element.setAttribute('class', elClass);
-  }
+  if (elClass) element.setAttribute('class', elClass);
 
   if (elParent) elParent.prepend(element);
   return element;
@@ -34,9 +28,10 @@ class Board {
   arrayBoard = [];
 
   trail = [];
+
   trailDOM = [];
 
-  // reset trail array and highlighted trail
+  // reset trail array and highlighted trail elements
   clearTrail() {
     this.trail = [];
 
@@ -46,6 +41,7 @@ class Board {
       } else {
         this.trailDOM[i].style.backgroundColor = 'var(--dark-square)';
       }
+      this.trailDOM[i].style.filter = 'brightness(100%)';
     }
     this.trailDOM = [];
   }
@@ -56,18 +52,19 @@ class Board {
       // rows indicated by 'x', columns by 'y'
       const row = createAndPrepend('div', 'row', boardCont);
       for (let x = 0; x < 8; x += 1) {
-        const square = createAndAppend('button', `square ${x}${y}`, null, row);
+        const square = createAndAppend('button', `square ${x}${y}`, row);
         // push coordinates to array
         this.arrayBoard.push([x, y]);
-        if (x === 0 && y === 0) {
-          square.classList = `square ${x}${y} light-square`;
-          square.style.backgroundColor = 'red';
-        } else if (x % 2 === 0 && y % 2 === 0) {
+        if (x % 2 === 0 && y % 2 === 0) {
           square.classList = `square ${x}${y} light-square`;
           square.style.backgroundColor = 'var(--light-square';
         } else if (x % 2 !== 0 && y % 2 !== 0) {
           square.classList = `square ${x}${y} light-square`;
           square.style.backgroundColor = 'var(--light-square';
+        }
+        if (x === 0 && y === 0) {
+          // make first square different color to signal starting move
+          square.style.backgroundColor = 'gray';
         }
       }
     }
@@ -83,7 +80,12 @@ class Board {
         );
         // keep track of highlighted squares
         this.trailDOM.push(square[0]);
-        square[0].style.backgroundColor = 'red';
+        square[0].style.backgroundColor = 'gray';
+
+        // increase brightness with each move to show order of moves
+        if (i > 0) {
+          square[0].style.filter = `brightness(${100 + i * 20}%)`;
+        }
       }, 300 * i);
     };
 
