@@ -10,6 +10,8 @@ Creation of this function required application of a search algorithm to find the
 
 ## How to use
 
+![](https://github.com/kuneus/knights-travails/blob/main/src/travail.gif)
+
 The board starts with the knight at the [0,0] coordinate, or the most bottom left square on the board.
 
 First, click on any square, which will then execute the knightMoves function and display the path from the start position to the clicked square by highlighting the squares along the way.
