@@ -119,6 +119,7 @@ button {
 .title {
   /* font-size: 4rem; */
   font-size: clamp(3rem, 4vw, 5rem);
+  color: white;
 }
 
 #board-cont {
