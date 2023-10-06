@@ -1,5 +1,5 @@
 import './style.css';
-import './board';
+import listeners from './board';
 
 // check if in production or development mode
 if (process.env.NODE_ENV === 'production') {
@@ -7,6 +7,8 @@ if (process.env.NODE_ENV === 'production') {
 } else if (process.env.NODE_ENV === 'development') {
   console.log('development mode!');
 }
+
+listeners();
 
 // module for chess board
 // 8x8 chess board using 2D coordinates [x,y]
